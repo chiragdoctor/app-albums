@@ -1,3 +1,7 @@
 {
-  "port" : "5123"
+  "port" : "5123",
+  "spotify" : {
+    "client_id" : "da1e075bfdf343a386a778038d1cc413",
+    "client_secret" : "5fcc4a5cb25b4842a636c3105c62bfb7"
+  }
 }
