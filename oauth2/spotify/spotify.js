@@ -17,12 +17,17 @@ module.exports = function (passport, config) {
                     }
 
                     if (user) {
-                        return done(null, user);
-                    } else {
+                        var options = {multi: false};
+                        User.update({'spotify.id': user.spotify.id}, {'spotify.access_token': accessToken}, options, function (err) {
+                            if (err) {
+                                return done(err, null);
+                            }
+                            user.spotify.access_token = accessToken;
+                            return done(null, user);
+                        });
+                    }
+                    else {
                         var newUser = new User();
-
-                        console.log("profile>>>>", profile);
-
                         newUser.spotify.id = profile.id;
                         newUser.spotify.email = profile.emails[0].value;
                         newUser.spotify.access_token = accessToken;
