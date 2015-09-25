@@ -1,4 +1,7 @@
 {
+  "mongo": {
+    "url":"mongodb://localhost:27017/passport"
+  },
   "port" : "5123",
   "spotify" : {
     "client_id" : "da1e075bfdf343a386a778038d1cc413",

@@ -7,11 +7,14 @@ var passport = require('passport');
 var session = require('express-session');
 var swig = require('swig');
 var consolidate = require('consolidate');
-var config = require('./configs/default');
-
+var config = require('config');
 
 var indexRoutes = require('./routes/index');
 var oauthRoutes = require('./routes/oauth');
+
+var mongoose = require('mongoose');
+// Connect to DB
+mongoose.connect(config.get('mongo.url'));
 
 
 var app = express();
