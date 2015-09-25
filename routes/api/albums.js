@@ -4,6 +4,7 @@ var express = require('express');
 var albums = express.Router();
 var request = require('request');
 var ensureAuthenticated = require('../../middlewares/ensureAuthenticated');
+var _ = require('lodash');
 
 
 albums.get('/albums', ensureAuthenticated, function (req, res) {
@@ -16,10 +17,8 @@ albums.get('/albums', ensureAuthenticated, function (req, res) {
     };
 
     request.get(options, function(err, response, body) {
-        res.json({albums: body});
+        res.json({albums: _.uniq(body.albums.items)});
     });
 });
-
-
 
 module.exports = albums;
