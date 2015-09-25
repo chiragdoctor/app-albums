@@ -10,7 +10,8 @@ var consolidate = require('consolidate');
 var config = require('./configs/default');
 
 
-var routes = require('./routes/index');
+var indexRoutes = require('./routes/index');
+var oauthRoutes = require('./routes/oauth');
 
 
 var app = express();
@@ -38,8 +39,9 @@ app.engine('html', consolidate.swig);
 var initPassport = require('./oauth2/spotify/init');
 initPassport(passport, config);
 
-
-app.use('/', routes);
+// Registing routes.
+app.use('/', indexRoutes);
+app.use('/', oauthRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
