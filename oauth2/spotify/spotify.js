@@ -11,7 +11,7 @@ module.exports = function (passport, config) {
         },
         function (accessToken, refreshToken, profile, done) {
             process.nextTick(function () {
-                User.findOne({'id': profile.id}, function (err, user) {
+                User.findOne({'spotify.id': profile.id}, function (err, user) {
                     if (err) {
                         return done(err);
                     }
