@@ -4,14 +4,14 @@ var express = require('express');
 var oauth = express.Router();
 var passport = require('passport');
 
-oauth.get('/oauth/spotify', passport.authenticate('spotify', {
+oauth.get('/spotify', passport.authenticate('spotify', {
         scope: ['user-read-email', 'user-read-private'],
         showDialog: true
     }),
     function (req, res) {
     });
 
-oauth.get('/oauth/callback/',
+oauth.get('/callback',
     passport.authenticate('spotify', {failureRedirect: '/login'}),
     function (req, res) {
         res.redirect('/');
