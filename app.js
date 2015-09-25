@@ -10,7 +10,8 @@ var consolidate = require('consolidate');
 var config = require('config');
 
 var indexRoutes = require('./routes/index');
-var oauthRoutes = require('./routes/oauth');
+var oauthRoutes = require('./routes/oauth/oauth');
+var albumsRoutes = require('./routes/api/albums');
 
 var mongoose = require('mongoose');
 // Connect to DB
@@ -44,7 +45,8 @@ initPassport(passport, config);
 
 // Registing routes.
 app.use('/', indexRoutes);
-app.use('/', oauthRoutes);
+app.use('/oauth', oauthRoutes);
+app.use('/api', albumsRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
