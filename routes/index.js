@@ -1,17 +1,14 @@
-var express = require('express');
-var index = express.Router();
+'use strict'
 
-index.get('/', function (req, res) {
-    res.render('index.html', {user: req.user});
-});
+var router = require('express').Router();
+var bodyParser = require('body-parser');
 
-index.get('/login', function (req, res) {
-    res.render('login.html', {user: req.user});
-});
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 
-index.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
-});
+router.use('/', require('../routes/auth/home'));
+router.use('/oauth', require('../routes/auth/oauth'));
+router.use('/api', require('../routes/api/albums'));
 
-module.exports = index;
+
+module.exports = router;

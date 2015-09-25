@@ -2,16 +2,17 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+//var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 var swig = require('swig');
 var consolidate = require('consolidate');
 var config = require('config');
 
-var indexRoutes = require('./routes/index');
-var oauthRoutes = require('./routes/oauth/oauth');
-var albumsRoutes = require('./routes/api/albums');
+
+//var homeRoutes = require('./routes/auth/home');
+//var oauthRoutes = require('./routes/auth/oauth');
+//var albumsRoutes = require('./routes/api/albums');
 
 var mongoose = require('mongoose');
 // Connect to DB
@@ -25,8 +26,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -44,9 +45,10 @@ var initPassport = require('./oauth2/spotify/init');
 initPassport(passport, config);
 
 // Registing routes.
-app.use('/', indexRoutes);
-app.use('/oauth', oauthRoutes);
-app.use('/api', albumsRoutes);
+//app.use('/', homeRoutes);
+//app.use('/oauth', oauthRoutes);
+//app.use('/api', albumsRoutes);
+app.use(require('./routes'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
