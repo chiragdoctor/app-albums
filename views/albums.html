@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <script src="../public/js/app.js"/>
+    <script src="../public/js/AlbumsService.js.js"/>
+    <script src="../public/js/AlbumsCtrl.js"/>
+</head>
+<body ng-app="AlbumsApp">
+    <div ng-controller="AlbumsCtrl" class="container">
+        <ul class="list-group">
+            <li ng-repeat="album in albums" class="list-group-items">
+                <img src="{{album.images[2].url}}" width="{{album.images[2].width}}" height="{{album.images[2].height}}" />
+                <span> {{album.name}} </span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
