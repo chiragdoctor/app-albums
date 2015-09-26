@@ -4,9 +4,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var session = require('express-session');
-var swig = require('swig');
-var consolidate = require('consolidate');
 var config = require('config');
+var path = require('path');
 
 require('./services/db').connect();
 var app = express();
@@ -18,7 +17,8 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, 'layouts')));
+//TODO: add app folder to static
 app.use(session({
     secret: config.secret, resave: false,
     saveUninitialized: true
@@ -26,16 +26,15 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.engine('html', consolidate.swig);
 
 // Setup passport
 var initPassport = require('./oauth2/spotify/init');
 initPassport(passport, config);
 
-// Registing routes.
-app.get('/album', function (req, res) {
-    res.sendFile(__dirname + '/layouts/albums.html');
-});
+//// Registing routes.
+app.get('/', function(req, res){
+    res.sendFile(path.join(__dirname, '/layouts/index.html'));
+})
 app.use(require('./routes'));
 
 // catch 404 and forward to error handler
@@ -52,7 +51,7 @@ app.use(function (req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error.html', {
+        res.render('error', {
             message: err.message,
             error: err
         });
@@ -63,7 +62,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error.html', {
+    res.render('error', {
         message: err.message,
         error: {}
     });
