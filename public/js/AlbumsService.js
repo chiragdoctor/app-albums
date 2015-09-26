@@ -5,7 +5,7 @@ angular.module('AlbumsApp.services', []).
 
         albumsAPI.getAlbums = function() {
             return $http.get('http://localhost:5123/api/albums');
-        }
+        };
 
         return albumsAPI;
     });

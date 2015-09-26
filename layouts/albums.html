@@ -8,10 +8,11 @@
     <script src="/js/AlbumsCtrl.js"> </script>
 </head>
 <body ng-app="AlbumsApp">
-    <div ng-controller="albumsController" class="container">
+    <div ng-controller="albumsController" ng-init="getAlbums()" class="container">
+        <input type="text" ng-model="albumFilter" placeholder="Search..."/>
         <ul class="list-group">
-            <li ng-repeat="album in albums" class="list-group-items">
-                <p><img src="{{album.images.url}}" width="{{album.images.width}}" height="{{album.images.height}}" /></p>
+            <li ng-repeat="album in albums | filter : searchFilter" class="list-group-items">
+                <p><img ng-src="{{album.images.url}} " alt="no" width="{{album.images.width}}" height="{{album.images.height}}" /></p>
                 <p><strong>{{album.name}} </strong></p>
             </li>
         </ul>
