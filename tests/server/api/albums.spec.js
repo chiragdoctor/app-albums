@@ -12,15 +12,14 @@ require('../../../services/db').connect();
 var User = require('../../../models/user');
 var _ = require('lodash');
 
-var testUser = {
-    "user1": {
-        "id": "chiragdoctor"
-    }
-};
+var testUser = require('../fixtures/user.json');
+var testAlbums = require('../fixtures/albums.json');
 
 
 function getUniqAlbums(albums){
-    return _.uniq(albums);
+    return _.uniq(albums, function (album){
+        return album.name;
+    });
 }
 
 describe('User not authenticated', function () {
@@ -56,8 +55,8 @@ describe('Albums test', function () {
         it('should return no duplicate albums', function (done) {
             req.get('/api/albums')
                 .expect(function (response) {
-                    var uniqAlbums = getUniqAlbums(response.body.albums);
-                    expect(response.body.albums.length).to.equal(uniqAlbums.length);
+                    var uniqAlbums = getUniqAlbums(testAlbums);
+                    !expect(response.body.albums.length).to.equal(uniqAlbums.length);
                 })
                 .end(done);
         });

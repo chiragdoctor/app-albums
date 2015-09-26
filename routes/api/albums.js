@@ -17,7 +17,14 @@ albums.get('/albums', ensureAuthenticated, function (req, res) {
     };
 
     request.get(options, function(err, response, body) {
-        res.json({albums: _.uniq(body.albums.items)});
+        var albums = [ ];
+        _.forEach(body.albums.items, function(n,key){
+            albums.push({images : n.images[2], name: n.name});
+        });
+        var uniqueAlbums = _.uniq(albums, function(album){
+           return album.name;
+        });
+        res.json({albums: uniqueAlbums});
     });
 });
 
