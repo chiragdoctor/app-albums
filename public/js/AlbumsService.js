@@ -4,15 +4,15 @@ angular.module('AlbumsApp.services', []).
         var albumsAPI = {};
 
         albumsAPI.loggedInUser = function(){
-            return $http.get('http://localhost:5123/login');
+            return $http.get('/login');
         }
 
         albumsAPI.getAlbums = function() {
-            return $http.get('http://localhost:5123/api/albums');
+            return $http.get('/api/albums');
         };
 
         albumsAPI.logoutUser = function(){
-            return $http.get('http://localhost:5123/logout');
+            return $http.get('/logout');
         }
 
         return albumsAPI;
