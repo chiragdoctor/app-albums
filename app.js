@@ -11,6 +11,8 @@ require('./services/db').connect();
 var app = express();
 
 // view engine setup
+
+app.set('port', (process.env.PORT || config.port || 5000));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

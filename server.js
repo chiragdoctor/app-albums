@@ -4,7 +4,4 @@ var config = require('./config/default');
 
 
 var server = http.createServer(app);
-var port = config.port || process.env.PORT || 3000;
-
-server.listen(port);
-console.log("app-albums has started and listening on port " + port);
+console.log("app-albums has started and listening on port " + app.get('port'));
