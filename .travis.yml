@@ -3,11 +3,9 @@ sudo: true
 node_js:
   - "0.11"
   - "0.10"
-services:
-- mongodb
 
 install:
 - npm install
 
 script:
-- npm run start
+- npm test

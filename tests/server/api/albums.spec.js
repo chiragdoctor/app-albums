@@ -7,11 +7,7 @@ var passportStub = require('passport-stub')
 var request = require('supertest');
 passportStub.install(api);
 var req = request(api);
-
-require('../../../services/db').connect();
-var User = require('../../../models/user');
 var _ = require('lodash');
-
 var testUser = require('../fixtures/user.json');
 var testAlbums = require('../fixtures/albums.json');
 
@@ -35,14 +31,8 @@ describe('User not authenticated', function () {
 
 describe('Albums test', function () {
     beforeEach(function (done) {
-        User.findOne({'spotify.id': testUser.user1.id}, function (err, user) {
-            if (err) {
-                console.error(err);
-                return done(err);
-            }
-            passportStub.login(user);
+            passportStub.login(testUser);
             done();
-        })
     });
 
     describe('GET /api/albums', function () {
