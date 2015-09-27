@@ -1,19 +1,13 @@
 language: node_js
-sudo: required
+sudo: true
 node_js:
-  - "0.12"
   - "0.11"
   - "0.10"
 services:
 - mongodb
 
-before_install:
-- sudo apt-get update -qq
-- sudo apt-get install -qq [packages list]
-
 install:
-- bundle install --path vendor/bundle
 - npm install
 
 script:
-- npm run test
+- npm run start
