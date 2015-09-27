@@ -1,5 +1,6 @@
 var express = require('express');
 var home = express.Router();
+var cool = require('cool-ascii-faces');
 
 
 home.get('/', function (req, res) {
@@ -15,5 +16,10 @@ home.get('/logout', function (req, res) {
     req.logout();
     res.send(200);
 });
+
+home.get('/cool', function(request, response) {
+    response.send(cool());
+});
+
 
 module.exports = home;

@@ -32,10 +32,6 @@ var initPassport = require('./oauth2/spotify/init');
 initPassport(passport, config);
 
 //// Registing routes.
-//app.get('/', function(req, res){
-    //res.sendFile(path.join(__dirname, '/layouts/index.html.ejs'));
-
-//})
 app.use(require('./routes'));
 
 // catch 404 and forward to error handler
