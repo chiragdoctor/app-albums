@@ -4,5 +4,6 @@ var mongoose = require('mongoose');
 var config = require('config');
 
 exports.connect = function () {
-    mongoose.connect(config.get('mongo.url'));
+    var url = process.env.MONGOLAB_URI || config.get('mongo.url');
+    mongoose.connect(url);
 }
