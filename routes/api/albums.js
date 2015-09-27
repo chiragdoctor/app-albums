@@ -7,7 +7,7 @@ var ensureAuthenticated = require('../../middlewares/ensureAuthenticated');
 var _ = require('lodash');
 
 
-albums.get('/albums', ensureAuthenticated, function (req, res) {
+albums.get('/albums', ensureAuthenticated, function (req, res, done) {
     //q=album:Iron%20Maiden&type=album
     var options = {
         url: 'https://api.spotify.com/v1/search',
@@ -17,6 +17,9 @@ albums.get('/albums', ensureAuthenticated, function (req, res) {
     };
 
     request.get(options, function(err, response, body) {
+        if(err){
+            return done(err);
+        }
         var albums = [ ];
         _.forEach(body.albums.items, function(n){
             albums.push({images : n.images[2], name: n.name});
