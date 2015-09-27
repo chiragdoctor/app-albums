@@ -1,6 +1,11 @@
 var express = require('express');
 var home = express.Router();
 
+
+home.get('/', function (req, res) {
+    res.render('index.html.ejs');
+});
+
 home.get('/login', function (req, res) {
     console.log('in login route');
     res.status(200).json({user: req.user});
