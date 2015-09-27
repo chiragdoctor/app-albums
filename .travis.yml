@@ -1,8 +1,24 @@
 language: node_js
 sudo: false
 node_js:
-- '2.5'
-- '0.12'
-- '0.10'
+  - "0.12"
+  - "0.11"
+  - "0.10"
 services:
-- mongo
+- mongodb
+
+before_install:
+- sudo apt-get update -qq
+- sudo apt-get install -qq [packages list]
+
+install:
+- bundle install --path vendor/bundle
+- npm install
+
+# whitelist
+branches:
+  only:
+    - master
+    - stable
+
+npm test
