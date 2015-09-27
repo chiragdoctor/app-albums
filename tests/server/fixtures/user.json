@@ -1,6 +1,9 @@
 {
   "spotify": {
-    "id": "chiragdoctor",
-    "access_token" : ""
+    "username": "chiragdoctor5",
+    "access_token": "",
+    "email": "chiragdoctor5@gmail.com",
+    "id": "chiragdoctor5",
+    "refresh_token": "AQCplSsHlkjcpTNEMExyFjTkR7N4Eyqw6Q0G6Ks4FD_SRUfP7hMSchwqoFIuPOvzeGOoxsGxjVcNCWi-O6VS1lTHBUX4Kpw9hSZQcpW2DXx0e1QQSwteIugaUmojSlYWGS0"
   }
 }

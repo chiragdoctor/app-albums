@@ -10,10 +10,6 @@ var req = request(api);
 var _ = require('lodash');
 var testUser = require('../fixtures/user.json');
 var testAlbums = require('../fixtures/albums.json');
-var db = require('../../../services/db');
-db.connect();
-var User = require('../../../models/user');
-
 
 function getUniqAlbums(albums) {
     return _.uniq(albums, function (album) {
@@ -35,16 +31,12 @@ describe('User not authenticated', function () {
 describe('Albums test', function () {
 
     beforeEach(function (done) {
-
-        User.findOne({'spotify.id': testUser.spotify.id}, function (err, user) {
-            req.get('/oauth/refresh_token?refresh_token=' + user.spotify.refresh_token + '&client_id=' + config.spotify.client_id + '&client_secret=' + config.spotify.client_secret)
-                .expect(function (response) {
-                    testUser.spotify.access_token = response.body.access_token;
-                    passportStub.login(testUser);
-                })
-                .end(done);
-
-        });
+        req.get('/oauth/refresh_token?refresh_token=' + testUser.spotify.refresh_token + '&client_id=' + config.spotify.client_id + '&client_secret=' + config.spotify.client_secret)
+            .expect(function (response) {
+                testUser.spotify.access_token = response.body.access_token;
+                passportStub.login(testUser);
+            })
+            .end(done);
     });
 
     describe('GET /api/albums', function () {
