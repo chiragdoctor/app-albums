@@ -7,7 +7,7 @@ module.exports = function (passport, config) {
     passport.use('spotify', new SpotifyStrategy({
             clientID: config.client_id,
             clientSecret: config.client_secret,
-            callbackURL: config.redirect_uri
+            callbackURL: process.env.redirect_uri || config.redirect_uri
         },
         function (accessToken, refreshToken, profile, done) {
             process.nextTick(function () {
