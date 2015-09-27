@@ -4,6 +4,10 @@ var cool = require('cool-ascii-faces');
 
 
 home.get('/', function (req, res) {
+    var result = ''
+    var times = process.env.TIMES || 5
+    for (i = 0; i < times; i++)
+        result += cool();
     res.render('index.html.ejs');
 });
 
@@ -17,7 +21,7 @@ home.get('/logout', function (req, res) {
     res.send(200);
 });
 
-home.get('/cool', function(request, response) {
+home.get('/cool', function (request, response) {
     response.send(cool());
 });
 
