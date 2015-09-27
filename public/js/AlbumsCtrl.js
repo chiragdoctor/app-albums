@@ -21,7 +21,7 @@ angular.module('AlbumsApp.controllers', []).
         $scope.logoutUser = function () {
             albumsAPIService.logoutUser()
                 .success(function () {
-                    // $window.location.href = '/index.html'
+                    $scope.loggedInUser = {};
                 })
         }
 

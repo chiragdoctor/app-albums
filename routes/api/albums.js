@@ -18,7 +18,7 @@ albums.get('/albums', ensureAuthenticated, function (req, res) {
 
     request.get(options, function(err, response, body) {
         var albums = [ ];
-        _.forEach(body.albums.items, function(n,key){
+        _.forEach(body.albums.items, function(n){
             albums.push({images : n.images[2], name: n.name});
         });
         var uniqueAlbums = _.uniq(albums, function(album){

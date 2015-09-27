@@ -6,23 +6,35 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="/js/app.js"> </script>
+    <script src="/js/app.js"></script>
     <script src="/js/AlbumsService.js"></script>
-    <script src="/js/AlbumsCtrl.js"> </script>
+    <script src="/js/AlbumsCtrl.js"></script>
 </head>
 
 <body ng-app="AlbumsApp" ng-controller="albumsController">
 
 <div ng-hide="isLoggedInState">
-    <p><a href="/oauth/spotify">Login with Spotify</a>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="/oauth/spotify">Login with Spotify</a></li>
+            </ul>
+        </div>
+    </nav>
 </div>
 
 
 <div ng-show="isLoggedInState">
-    <h2>Welcome! {{loggedInUser.spotify.id}}</h2>
-    <p><a href="#/albums">Albums</a></p>
-    <p><a href="#/logout"> Logout </a></p>
+    <nav class="navbar navbar-default navbar-static-top">
+        <p class="navbar-text">Signed in as {{loggedInUser.spotify.id}}</p>
+        <div class="container">
 
+            <ul class="nav navbar-nav">
+                <li><a href="#/albums">Albums</a></li>
+                <li><a href="#/logout"> Logout </a></li>
+            </ul>
+        </div>
+    </nav>
 </div>
 
 <div ng-view></div>

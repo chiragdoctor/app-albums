@@ -1,11 +1,11 @@
 <div ng-init="getAlbums()" class="container">
-    <input type="text" ng-model="albumFilter" placeholder="Search..."/>
+    <p><input type="text" class="form-control" ng-model="albumFilter" placeholder="Search Title"/></p>
     <ul class="list-group">
-        <li ng-repeat="album in albums | filter : searchFilter" class="list-group-items">
+        <div ng-repeat="album in albums | filter : searchFilter" class="col-md-4">
             <p><img ng-src="{{album.images.url}} " alt="no" width="{{album.images.width}}"
                     height="{{album.images.height}}"/></p>
 
-            <p><strong>{{album.name}} </strong></p>
-        </li>
+            <p>{{album.name}}</p>
+        </div>
     </ul>
 </div>

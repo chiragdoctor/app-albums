@@ -8,7 +8,7 @@ home.get('/login', function (req, res) {
 
 home.get('/logout', function (req, res) {
     req.logout();
-    res.send(200);
+    res.redirect(200);
 });
 
 module.exports = home;
