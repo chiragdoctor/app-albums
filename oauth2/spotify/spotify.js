@@ -18,11 +18,12 @@ module.exports = function (passport, config) {
 
                     if (user) {
                         var options = {multi: false};
-                        User.update({'spotify.id': user.spotify.id}, {'spotify.access_token': accessToken}, options, function (err) {
+                        User.update({'spotify.id': user.spotify.id}, {'spotify.access_token': accessToken, 'spotify.refresh_token' : refreshToken}, options, function (err) {
                             if (err) {
                                 return done(err, null);
                             }
                             user.spotify.access_token = accessToken;
+                            user.spotify.refresh_token = refreshToken;
                             return done(null, user);
                         });
                     }
@@ -31,6 +32,7 @@ module.exports = function (passport, config) {
                         newUser.spotify.id = profile.id;
                         newUser.spotify.email = profile.emails[0].value;
                         newUser.spotify.access_token = accessToken;
+                        newUser.refresh_token = refreshToken;
                         newUser.spotify.username = profile.username;
 
                         newUser.save(function (err) {
