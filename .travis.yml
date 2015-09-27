@@ -15,10 +15,5 @@ install:
 - bundle install --path vendor/bundle
 - npm install
 
-# whitelist
-branches:
-  only:
-    - master
-    - stable
-
-npm test
+script:
+npm run test
