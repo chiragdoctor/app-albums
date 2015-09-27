@@ -3,11 +3,6 @@ angular.module('AlbumsApp.services', []).
 
         var albumsAPI = {};
 
-        //albumsAPI.getIndex = function (){
-        //  return $http.get('http://localhost:5123/');
-        //};
-
-
         albumsAPI.loggedInUser = function(){
             return $http.get('http://localhost:5123/login');
         }
